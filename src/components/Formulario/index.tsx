@@ -38,6 +38,7 @@ const Formulario: React.FC = () => {
     setDataFim('')
     setHoraFim('')
   }
+  
   return (<form className={style.Formulario} onSubmit={submeterForm}>
     <h3 className={style.titulo}>Novo evento</h3>
 
