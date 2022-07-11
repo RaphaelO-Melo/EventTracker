@@ -1,23 +1,22 @@
 import React from 'react';
-import { IEvento } from '../../interfaces/IEvento';
+import useListEvents from '../../state/hooks/useListEvents';
 import Evento from '../Evento';
 import Filtro from '../Filtro';
 import style from './ListaDeEventos.module.scss';
 
-const ListaDeEventos: React.FC<{ 
-  eventos: IEvento[], 
-  aoAlterarStatus: (id: number) => void, 
-  aoDeletarEvento: (id: number) => void, 
-  aoFiltroAplicado: (data: Date | null) => void }> = ({ eventos, aoDeletarEvento, aoAlterarStatus, aoFiltroAplicado }) => {
+const ListaDeEventos: React.FC = () => {
+
+  const eventos = useListEvents();
 
   return (<section>
-    <Filtro aoFiltroAplicado={aoFiltroAplicado} />
+    <Filtro/>
     <div className={style.Scroll}>
       {eventos.map(evento => (
-        <Evento aoAlterarStatus={aoAlterarStatus} aoDeletarEvento={aoDeletarEvento} evento={evento} key={evento.id} />
+        <Evento evento={evento} key={evento.id} />
       ))}
     </div>
-  </section>)
+  </section>);
+
 }
 
 export default ListaDeEventos
